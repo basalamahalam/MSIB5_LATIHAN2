@@ -22,6 +22,6 @@ Nilai Rata-rata
 
 ## Video Preview Program
 
+https://github.com/basalamahalam/MSIB5_LATIHAN2/assets/101177095/642e161e-79ab-4855-9e42-bb9e97f13211
 
-https://github.com/basalamahalam/MSIB5_LATIHAN2/assets/101177095/9f1ae080-736d-43a6-970d-3b466278fb2a
 
