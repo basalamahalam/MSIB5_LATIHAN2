@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Tugas 2 | MSIB5</title>
+  </head>
+  <body>
+    <div class="container">
+      <h3>Hitung Nilai Rata - Rata</h3>
+      <form id="isiform">
+        <label for="fname">Nama :</label>
+        <input
+          type="text"
+          name="fname"
+          id="fname"
+          placeholder="Masukan Nama"
+          required
+        />
+        <label for="matkul">Mata Kuliah :</label>
+        <input
+          type="text"
+          name="matkul"
+          id="matkul"
+          placeholder="Masukan Mata Kuliah"
+          required
+        />
+        <label for="grade">Grade :</label>
+        <select name="grade" id="grade" required>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
+        </select>
+        <button type="submit">Hitung</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Mata Kuliah</th>
+            <th>Grade</th>
+            <th>Nilai Rata-Rata</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="dataform">
+          <!-- <td>${nama}</td>
+          <td>${matkul}</td>
+          <td>${grade}</td>
+          <td>${nilaiavg}</td>
+          <td>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </td> -->
+        </tbody>
+      </table>
+    </div>
+    <script>
+      var dataRow = null;
+
+      // Add Data
+      document.querySelector("#isiform"),
+        addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          // get Values
+          const nama = document.querySelector("#fname").value;
+          const matkul = document.querySelector("#matkul").value;
+          const grade = document.querySelector("#grade").value;
+
+          let nilaiavg = 0;
+          if (grade === "A") {
+            nilaiavg = 4;
+          } else if (grade === "B") {
+            nilaiavg = 3;
+          } else if (grade === "C") {
+            nilaiavg = 2;
+          } else if (grade === "D") {
+            nilaiavg = 1;
+          }
+
+          // validate
+          if (dataRow == null) {
+            const list = document.querySelector("#dataform");
+            const row = document.createElement("tr");
+            row.innerHTML = `<td>${nama}</td>
+    <td>${matkul}</td>
+    <td>${grade}</td>
+    <td>${nilaiavg}</td>
+    <td>
+      <button class="edit">Edit</button>
+      <button class="delete">Delete</button>
+      </td>`;
+
+            list.appendChild(row);
+            dataRow = null;
+          } else {
+            dataRow.children[0].textContent = nama;
+            dataRow.children[1].textContent = matkul;
+            dataRow.children[2].textContent = grade;
+            dataRow.children[3].textContent = nilaiavg;
+            dataRow = null;
+          }
+
+          // Clear form fields
+          document.querySelector("#fname").value = "";
+          document.querySelector("#matkul").value = "";
+          document.querySelector("#grade").value = "A";
+        });
+
+      // Edit Data
+      document.querySelector("#dataform").addEventListener("click", (e) => {
+        target = e.target;
+        if (target.classList.contains("edit")) {
+          dataRow = target.parentElement.parentElement;
+          document.querySelector("#fname").value =
+            dataRow.children[0].textContent;
+          document.querySelector("#matkul").value =
+            dataRow.children[1].textContent;
+          document.querySelector("#grade").value =
+            dataRow.children[2].textContent;
+        }
+      });
+
+      // Delete data
+      document.querySelector("#dataform").addEventListener("click", (e) => {
+        target = e.target;
+        if (target.classList.contains("delete")) {
+          target.parentElement.parentElement.remove();
+        }
+      });
+    </script>
+  </body>
+</html>
